@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rajesh K — Data Science Portfolio</title>
+<meta name="description" content="Data science portfolio — machine learning, NLP, and applied analytics projects.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:      #FAF9F6;
+    --paper-dim:  #F1EFE9;
+    --ink:        #1B1D23;
+    --ink-soft:   #5B5D64;
+    --line:       #DAD7CE;
+    --signal:     #1E4B8F;
+    --signal-dim: #E7EEF7;
+    --amber:      #D98E2B;
+    --amber-dim:  #FBF1E1;
+
+    --display: 'Fraunces', serif;
+    --body: 'IBM Plex Sans', -apple-system, sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; }
+
+  .wrap{ max-width:920px; margin:0 auto; padding:0 28px; }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,249,246,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .mark{
+    font-family:var(--mono); font-size:14px; font-weight:500;
+    letter-spacing:0.02em;
+  }
+  .mark span{ color:var(--signal); }
+  .navlinks{ display:flex; gap:28px; }
+  .navlinks a{
+    font-family:var(--mono); font-size:13px; letter-spacing:0.03em;
+    color:var(--ink-soft); text-transform:uppercase;
+    padding:6px 0; border-bottom:1px solid transparent;
+    transition:color .15s, border-color .15s;
+  }
+  .navlinks a:hover{ color:var(--signal); border-color:var(--signal); }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding:96px 0 64px; }
+  .eyebrow{
+    font-family:var(--mono); font-size:13px; color:var(--signal);
+    letter-spacing:0.04em; text-transform:uppercase; margin-bottom:20px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{
+    content:''; width:24px; height:1px; background:var(--signal);
+  }
+  h1.headline{
+    font-family:var(--display); font-weight:500;
+    font-size:clamp(34px, 5vw, 54px);
+    line-height:1.12; letter-spacing:-0.01em;
+    max-width:14ch;
+    margin-bottom:24px;
+  }
+  .hero .lede{
+    font-size:18px; color:var(--ink-soft); max-width:56ch;
+    margin-bottom:32px;
+  }
+  .hero-cta{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    font-family:var(--mono); font-size:13px; letter-spacing:0.02em;
+    padding:11px 20px; border-radius:2px; border:1px solid var(--ink);
+    transition:background .15s, color .15s;
+  }
+  .btn.primary{ background:var(--ink); color:var(--paper); }
+  .btn.primary:hover{ background:var(--signal); border-color:var(--signal); }
+  .btn.ghost:hover{ background:var(--ink); color:var(--paper); }
+
+  /* signature divider: sparkline glyphs */
+  .divider{
+    display:flex; align-items:center; gap:6px;
+    padding:40px 0; opacity:0.85;
+  }
+  .divider svg{ height:22px; }
+  .divider .rule{ flex:1; height:1px; background:var(--line); }
+
+  /* ---------- SECTION shell ---------- */
+  section{ padding:64px 0; }
+  .section-head{ margin-bottom:40px; }
+  .section-num{
+    font-family:var(--mono); font-size:12px; color:var(--amber);
+    letter-spacing:0.05em; text-transform:uppercase; margin-bottom:10px;
+    display:block;
+  }
+  h2{
+    font-family:var(--display); font-weight:500;
+    font-size:clamp(26px, 3.4vw, 34px); letter-spacing:-0.01em;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid; grid-template-columns:1.4fr 1fr; gap:56px;
+  }
+  .about-body p{ margin-bottom:16px; color:var(--ink); }
+  .about-body p.placeholder{ color:var(--ink-soft); font-style:italic; }
+
+  .stat-list{ border-top:1px solid var(--line); }
+  .stat{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding:14px 0; border-bottom:1px solid var(--line);
+    font-family:var(--mono); font-size:13px;
+  }
+  .stat .k{ color:var(--ink-soft); }
+  .stat .v{ color:var(--ink); text-align:right; }
+
+  .tag-row{ display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; }
+  .tag{
+    font-family:var(--mono); font-size:12px; color:var(--signal);
+    background:var(--signal-dim); padding:5px 10px; border-radius:2px;
+  }
+
+  /* ---------- FEATURED WORK ---------- */
+  .featured-card{
+    border:1px solid var(--line); background:var(--paper-dim);
+    padding:40px; border-radius:3px; position:relative;
+  }
+  .featured-card::before{
+    content:'FEATURED'; position:absolute; top:-11px; left:32px;
+    background:var(--amber); color:var(--paper);
+    font-family:var(--mono); font-size:11px; letter-spacing:0.06em;
+    padding:3px 10px; border-radius:2px;
+  }
+  .featured-empty{
+    display:flex; flex-direction:column; gap:14px;
+    align-items:flex-start;
+  }
+  .featured-empty h3{
+    font-family:var(--display); font-size:22px; font-weight:500;
+    color:var(--ink-soft);
+  }
+  .featured-empty p{ color:var(--ink-soft); max-width:52ch; font-size:15px; }
+  .featured-empty .btn{ margin-top:6px; }
+
+  /* ---------- PROJECT GRID ---------- */
+  .project-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line);
+  }
+  .project-card{
+    background:var(--paper); padding:26px 24px; min-height:150px;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .project-card .pnum{
+    font-family:var(--mono); font-size:12px; color:var(--line);
+  }
+  .project-card h4{
+    font-family:var(--body); font-weight:600; font-size:15px;
+    color:var(--ink-soft); margin-top:auto;
+  }
+  .project-card .status{
+    font-family:var(--mono); font-size:11px; color:var(--ink-soft);
+    text-transform:uppercase; letter-spacing:0.04em; margin-top:8px;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact-row{
+    display:flex; flex-wrap:wrap; gap:14px; margin-top:28px;
+  }
+  .contact-link{
+    font-family:var(--mono); font-size:14px;
+    border:1px solid var(--ink); padding:12px 18px; border-radius:2px;
+    transition:background .15s, color .15s;
+  }
+  .contact-link:hover{ background:var(--ink); color:var(--paper); }
+
+  footer{
+    border-top:1px solid var(--line); padding:32px 0;
+    font-family:var(--mono); font-size:12px; color:var(--ink-soft);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:760px){
+    .about-grid{ grid-template-columns:1fr; gap:32px; }
+    .project-grid{ grid-template-columns:1fr; }
+    .navlinks{ gap:16px; }
+  }
+
+  :focus-visible{ outline:2px solid var(--signal); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce){ html{ scroll-behavior:auto; } }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="mark">rajesh<span>-k07</span></div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <!-- ================= HERO ================= -->
+  <section class="hero wrap">
+    <div class="eyebrow">Data Scientist · MS in Data Science</div>
+    <!-- EDIT: replace headline with your own angle — what problem you solve, not just your title -->
+    <h1 class="headline">Turning messy data into decisions people can act on.</h1>
+    <!-- EDIT: 2-3 sentence bio — background, focus area, what you're looking for -->
+    <p class="lede placeholder-text">
+      [Placeholder — replace with your bio: your background, the kind of problems you like solving,
+      and the domain or industry you're aiming for. Keep it to 2-3 sentences.]
+    </p>
+    <div class="hero-cta">
+      <a class="btn primary" href="#work">View Work</a>
+      <a class="btn ghost" href="#contact">Get in Touch</a>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="divider">
+      <svg viewBox="0 0 60 22" fill="none"><polyline points="0,18 10,10 20,14 30,4 40,9 50,2 60,7" stroke="#1E4B8F" stroke-width="1.6"/></svg>
+      <div class="rule"></div>
+      <svg viewBox="0 0 40 22" fill="none"><circle cx="4" cy="16" r="2" fill="#D98E2B"/><circle cx="14" cy="8" r="2" fill="#D98E2B"/><circle cx="24" cy="13" r="2" fill="#D98E2B"/><circle cx="34" cy="5" r="2" fill="#D98E2B"/></svg>
+    </div>
+  </div>
+
+  <!-- ================= ABOUT ================= -->
+  <section id="about" class="wrap">
+    <div class="section-head">
+      <span class="section-num">01 / About</span>
+      <h2>Background &amp; focus</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-body">
+        <!-- EDIT: 2-3 paragraphs. What you studied, notable coursework/thesis, what kind of role you want -->
+        <p class="placeholder">[Placeholder — paragraph 1: your academic background, MS Data Science program,
+        and what drew you to the field.]</p>
+        <p class="placeholder">[Placeholder — paragraph 2: the type of problems or industry you want to work in,
+        and any specific strengths — e.g. NLP, statistical modeling, dashboards, storytelling with data.]</p>
+        <div class="tag-row">
+          <!-- EDIT: swap in your real tools/skills -->
+          <span class="tag">Python</span>
+          <span class="tag">scikit-learn</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Machine Learning</span>
+          <span class="tag">NLP</span>
+        </div>
+      </div>
+      <div class="stat-list">
+        <!-- EDIT: fill with your real details -->
+        <div class="stat"><span class="k">Degree</span><span class="v">MS, Data Science</span></div>
+        <div class="stat"><span class="k">Focus</span><span class="v">[Your focus area]</span></div>
+        <div class="stat"><span class="k">Based in</span><span class="v">[Location]</span></div>
+        <div class="stat"><span class="k">Open to</span><span class="v">[Role type, e.g. Data Scientist]</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="divider">
+      <svg viewBox="0 0 60 22" fill="none"><rect x="0" y="12" width="6" height="10" fill="#1E4B8F"/><rect x="10" y="6" width="6" height="16" fill="#1E4B8F"/><rect x="20" y="14" width="6" height="8" fill="#1E4B8F"/><rect x="30" y="2" width="6" height="20" fill="#1E4B8F"/><rect x="40" y="9" width="6" height="13" fill="#1E4B8F"/></svg>
+      <div class="rule"></div>
+    </div>
+  </div>
+
+  <!-- ================= WORK / PROJECTS ================= -->
+  <section id="work" class="wrap">
+    <div class="section-head">
+      <span class="section-num">02 / Work</span>
+      <h2>Featured project</h2>
+    </div>
+
+    <!-- This is the section that must be "fully populated" for Milestone 2.
+         Replace the .featured-empty block below with real project content
+         once the project is provided: title, problem framing, approach,
+         results, tools used, and links to the notebook/repo + a README. -->
+    <div class="featured-card">
+      <div class="featured-empty">
+        <h3>[Featured project title goes here]</h3>
+        <p>[Placeholder — this card will hold your fully-detailed featured project: the problem,
+        your approach, key results, and tools used, plus links to the notebook and a project README.
+        This is the section graders will check is "fully populated" for Milestone 2.]</p>
+        <a class="btn ghost" href="https://github.com/rajesh-k07/data-science-portfolio" target="_blank" rel="noopener">View Repo →</a>
+      </div>
+    </div>
+
+    <div style="margin-top:56px;">
+      <span class="section-num">More projects</span>
+    </div>
+    <div class="project-grid">
+      <!-- EDIT: replace each card as projects are added. Grid currently sized for 9 more (10 total). -->
+      <div class="project-card"><span class="pnum">02</span><h4>[Project title]</h4><span class="status">Coming soon</span></div>
+      <div class="project-card"><span class="pnum">03</span><h4>[Project title]</h4><span class="status">Coming soon</span></div>
+      <div class="project-card"><span class="pnum">04</span><h4>[Project title]</h4><span class="status">Coming soon</span></div>
+      <div class="project-card"><span class="pnum">05</span><h4>[Project title]</h4><span class="status">Coming soon</span></div>
+      <div class="project-card"><span class="pnum">06</span><h4>[Project title]</h4><span class="status">Coming soon</span></div>
+      <div class="project-card"><span class="pnum">07</span><h4>[Project title]</h4><span class="status">Coming soon</span></div>
+      <div class="project-card"><span class="pnum">08</span><h4>[Project title]</h4><span class="status">Coming soon</span></div>
+      <div class="project-card"><span class="pnum">09</span><h4>[Project title]</h4><span class="status">Coming soon</span></div>
+      <div class="project-card"><span class="pnum">10</span><h4>[Project title]</h4><span class="status">Coming soon</span></div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="divider">
+      <svg viewBox="0 0 60 22" fill="none"><path d="M0 20 Q15 2 30 14 T60 6" stroke="#D98E2B" stroke-width="1.6" fill="none"/></svg>
+      <div class="rule"></div>
+    </div>
+  </div>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact" class="wrap">
+    <div class="section-head">
+      <span class="section-num">03 / Contact</span>
+      <h2>Let's talk</h2>
+    </div>
+    <!-- EDIT: 1-2 sentence closing line -->
+    <p class="placeholder" style="color:var(--ink-soft); max-width:52ch;">
+      [Placeholder — short closing line inviting outreach, e.g. "Open to data scientist and
+      ML roles — happy to walk through any project in more depth."]
+    </p>
+    <div class="contact-row">
+      <!-- EDIT: replace with your real links -->
+      <a class="contact-link" href="mailto:your.email@example.com">Email</a>
+      <a class="contact-link" href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="contact-link" href="https://github.com/rajesh-k07" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <span>© 2026 Rajesh K.</span>
+  <span>Built with GitHub Pages</span>
+</footer>
+
+</body>
+</html>
