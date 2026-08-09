@@ -43,7 +43,6 @@
 
   .wrap{ max-width:1200px; margin:0 auto; padding:0 28px; }
 
-  /* ---------- NAV ---------- */
   header{
     position:sticky; top:0; z-index:50;
     background:rgba(250,249,246,0.92);
@@ -68,7 +67,6 @@
   }
   .navlinks a:hover{ color:var(--signal); border-color:var(--signal); }
 
-  /* ---------- HERO ---------- */
   .hero{ padding:48px 0 8px; }
   .eyebrow{
     font-family:var(--mono); font-size:13px; color:var(--signal);
@@ -99,7 +97,6 @@
   .btn.primary:hover{ background:var(--signal); border-color:var(--signal); }
   .btn.ghost:hover{ background:var(--ink); color:var(--paper); }
 
-  /* signature divider: sparkline glyphs */
   .divider{
     display:flex; align-items:center; gap:6px;
     padding:8px 0; opacity:0.85;
@@ -107,7 +104,6 @@
   .divider svg{ height:22px; }
   .divider .rule{ flex:1; height:1px; background:var(--line); }
 
-  /* ---------- SECTION shell ---------- */
   section{ padding:12px 0; }
   .section-head{ margin-bottom:20px; }
   .section-num{
@@ -120,7 +116,6 @@
     font-size:clamp(24px, 3vw, 30px); letter-spacing:-0.005em;
   }
 
-  /* ---------- ABOUT ---------- */
   .about-grid{
     display:grid; grid-template-columns:1.3fr 0.7fr; gap:48px;
   }
@@ -148,7 +143,6 @@
     background:var(--signal-dim); padding:5px 10px; border-radius:2px;
   }
 
-  /* ---------- PROJECTS REPO LINK ---------- */
   .repo-link-card{
     border:1px solid var(--line); background:var(--paper-dim);
     padding:36px 40px; border-radius:3px;
@@ -162,28 +156,42 @@
   .repo-link-card p{ color:var(--ink-soft); max-width:52ch; font-size:15px; }
   .repo-link-card .btn{ flex-shrink:0; }
 
-  /* ---------- PROJECT GRID ---------- */
   .project-grid{
     display:grid; grid-template-columns:repeat(3, 1fr); gap:1px;
     background:var(--line); border:1px solid var(--line);
   }
   .project-card{
-    background:var(--paper); padding:26px 24px; min-height:150px;
+    background:var(--paper); padding:16px 24px; min-height:110px;
     display:flex; flex-direction:column; justify-content:space-between;
+  }
+  a.project-card{
+    transition:background .15s;
+  }
+  a.project-card:hover{
+    background:var(--paper-dim);
+  }
+  .pcard-top{
+    display:flex; align-items:baseline; gap:10px;
   }
   .project-card .pnum{
     font-family:var(--mono); font-size:12px; color:var(--line);
+    flex-shrink:0;
   }
   .project-card h4{
     font-family:var(--body); font-weight:600; font-size:15px;
-    color:var(--ink-soft); margin-top:auto;
+    color:var(--ink-soft);
+  }
+  a.project-card h4{
+    color:var(--ink);
   }
   .project-card .status{
     font-family:var(--mono); font-size:11px; color:var(--ink-soft);
     text-transform:uppercase; letter-spacing:0.04em; margin-top:8px;
   }
+  a.project-card .status{
+    color:var(--signal);
+  }
 
-  /* ---------- CONTACT ---------- */
   .contact-row{
     display:flex; flex-wrap:wrap; gap:14px; margin-top:28px;
   }
@@ -200,7 +208,6 @@
     display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
   }
 
-  /* ---------- responsive ---------- */
   @media (max-width:760px){
     .about-grid{ grid-template-columns:1fr; gap:32px; }
     .project-grid{ grid-template-columns:1fr; }
@@ -215,7 +222,6 @@
 
 <header>
   <nav class="wrap">
-    <!--  <div class="mark"><span>Rajesh Kumawat</span></div> -->
     <div class="mark">Rajesh Kumawat </div>
     <div class="navlinks">
       <a href="#about">About</a>
@@ -226,12 +232,9 @@
 </header>
 
 <main>
-  <!-- ================= HERO ================= -->
   <section class="hero wrap">
     <div class="eyebrow">Data Integration · Cloud · ML &amp; AI</div>
-    <!-- EDIT: replace headline with your own angle — what problem you solve, not just your title -->
     <h1 class="headline">From data integration to intelligence.</h1>
-    <!-- EDIT: 2-3 sentence bio — background, focus area, what you're looking for -->
     <p class="lede">
        I connect data before starting the data modeling and integration. With years of experience in Data Integration and Business Intelligence across retail, e-commerce, omnichannel, logistics, and supply chain, I have built the pipelines and platforms that transform raw data into reliable, usable information while working across the broader landscape of applications and systems they connect to.
     <br>
@@ -250,7 +253,6 @@
     </div>
   </div>
 
-  <!-- ================= ABOUT ================= -->
   <section id="about" class="wrap">
     <div class="section-head">
       <span class="section-num">About</span>
@@ -310,7 +312,6 @@
     </div>
   </div>
 
-  <!-- ================= WORK / PROJECTS ================= -->
   <section id="work" class="wrap">
     <div class="section-head">
       <span class="section-num">Work</span>
@@ -320,7 +321,7 @@
     <div class="repo-link-card">
       <div>
         <h3>Data Science Portfolio</h3>
-        <p>All of my project notebooks, code, and write-ups live in one repository, including machine learning, NLP, and applied analytics work from my MS program.</p>
+        <p>All of my project notebooks, code, and write-ups live in one repository, including machine learning, NLP, and applied analytics work.</p>
       </div>
       <a class="btn primary" href="https://github.com/rajesh-k07/data-science-portfolio" target="_blank" rel="noopener">View All Projects →</a>
     </div>
@@ -329,13 +330,12 @@
       <span class="section-num">Highlights</span>
     </div>
     <div class="project-grid">
-      <!-- EDIT: replace each card as projects are added. Grid currently sized for 9 (10 total incl. above). -->
-      <div class="project-card"><span class="pnum">01</span><h4>[Project title]</h4><span class="status">Coming soon</span></div>
-      <div class="project-card"><span class="pnum">02</span><h4>[Project title]</h4><span class="status">Coming soon</span></div>
-      <div class="project-card"><span class="pnum">03</span><h4>[Project title]</h4><span class="status">Coming soon</span></div>
-      <div class="project-card"><span class="pnum">04</span><h4>[Project title]</h4><span class="status">Coming soon</span></div>
-      <div class="project-card"><span class="pnum">05</span><h4>[Project title]</h4><span class="status">Coming soon</span></div>
-      <div class="project-card"><span class="pnum">06</span><h4>[Project title]</h4><span class="status">Coming soon</span></div>
+      <a class="project-card" href="https://github.com/rajesh-k07/data-science-portfolio/tree/main/machine-learning/bank-marketing-predictive-modeling" target="_blank" rel="noopener"><div class="pcard-top"><span class="pnum">01</span><h4>Predictive Modeling Using Bank Marketing Dataset</h4></div><span class="status">View Project →</span></a>
+      <div class="project-card"><div class="pcard-top"><span class="pnum">02</span><h4>[Project title]</h4></div><span class="status">Coming soon</span></div>
+      <div class="project-card"><div class="pcard-top"><span class="pnum">03</span><h4>[Project title]</h4></div><span class="status">Coming soon</span></div>
+      <div class="project-card"><div class="pcard-top"><span class="pnum">04</span><h4>[Project title]</h4></div><span class="status">Coming soon</span></div>
+      <div class="project-card"><div class="pcard-top"><span class="pnum">05</span><h4>[Project title]</h4></div><span class="status">Coming soon</span></div>
+      <div class="project-card"><div class="pcard-top"><span class="pnum">06</span><h4>[Project title]</h4></div><span class="status">Coming soon</span></div>
     </div>
   </section>
 
@@ -346,18 +346,16 @@
     </div>
   </div>
 
-  <!-- ================= CONTACT ================= -->
   <section id="contact" class="wrap">
     <div class="section-head">
       <span class="section-num">Contact</span>
       <h2>Get in touch</h2>
     </div>
     <p style="color:var(--ink-soft); max-width:52ch;">
-      Open to ML/AI and Data & Solution Architecture roles <br>
+      Open to ML/AI and Data &amp; Solution Architecture roles.<br>
       Feel free to reach out to connect or discuss any relevant opportunity.
     </p>
     <div class="contact-row">
-      <!-- EDIT: replace with your real links -->
       <a class="contact-link" href="mailto:rajesh.kumawat07@gmail.com">Email</a>
       <a class="contact-link" href="https://www.linkedin.com/in/rajesh-kumawat-a1bab415/" target="_blank" rel="noopener">LinkedIn</a>
       <a class="contact-link" href="https://github.com/rajesh-k07" target="_blank" rel="noopener">GitHub</a>
